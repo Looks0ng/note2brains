@@ -1,0 +1,150 @@
+/* --- Root Variables --- */
+:root {
+  --nav-text-color: #e2e8f0;
+  --nav-text-hover-color: #ffffff;
+  --nav-glass-bg: rgba(255, 255, 255, 0.05);
+  --nav-glass-border: rgba(255, 255, 255, 0.1);
+  --nav-item-active-bg: rgba(255, 255, 255, 0.1);
+}
+
+/* --- กรอบ Navbar หลัก --- */
+.navbar-header {
+  background: transparent;
+  border-bottom: none;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 16px 0;
+  transition: transform 0.4s ease-in-out;
+}
+
+.navbar-header.navbar-hidden {
+  transform: translateY(-100%);
+}
+
+/* ✨ [แก้ไข] ลบ max-width และ margin ออกเพื่อให้เต็มจอ */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 40px;
+  box-sizing: border-box;
+  height: 64px;
+}
+
+/* --- ส่วนโลโก้/ชื่อแอป --- */
+.navbar-brand {
+  /* ✨ [แก้ไข] ปรับขนาดฟอนต์เป็น 30px */
+  font-size: 30px; 
+  font-weight: 700;
+  color: var(--nav-text-color);
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+  flex: 1; 
+  display: flex;
+  justify-content: flex-start;
+}
+.navbar-brand:hover {
+  color: var(--nav-text-hover-color);
+  transform: scale(1.02);
+}
+.navbar-brand span {
+  color: inherit;
+  background: none;
+  animation: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+}
+
+/* --- สไตล์สำหรับเมนูกลาง (Glassmorphism) --- */
+.navbar-center-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--nav-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--nav-glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  border-radius: 50px;
+}
+
+/* --- เมนูและลิงก์ --- */
+.navbar-item {
+  font-family: 'Inter', sans-serif;
+  color: var(--nav-text-color);
+  text-decoration: none;
+  border-radius: 40px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 44px;
+}
+
+.nav-text, .nav-icon {
+  position: absolute;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.nav-text {
+  opacity: 1;
+  transform: scale(1);
+}
+.nav-icon {
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+.navbar-item:hover {
+  color: var(--nav-text-hover-color);
+  background-color: var(--nav-item-active-bg);
+}
+
+.navbar-item.active {
+  color: var(--nav-text-hover-color);
+  background-color: var(--nav-item-active-bg);
+  font-weight: 600;
+}
+.navbar-item.active .nav-text {
+  opacity: 0;
+  transform: scale(0.7);
+}
+.navbar-item.active .nav-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* --- ส่วนขวา: ปุ่ม Logout --- */
+.navbar-right-actions {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar-logout-btn {
+  font-family: 'Inter', sans-serif;
+  padding: 10px 24px;
+  border-radius: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--nav-text-color);
+  border: 1px solid var(--nav-glass-border);
+}
+
+.navbar-logout-btn:hover {
+  color: var(--nav-text-hover-color);
+  background-color: var(--nav-item-active-bg);
+  border-color: var(--nav-text-color);
+}

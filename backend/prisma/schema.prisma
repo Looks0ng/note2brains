@@ -1,0 +1,94 @@
+generator client {
+  provider             = "prisma-client-py"
+  interface            = "asyncio"
+  recursive_type_depth = "5"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int           @id @default(autoincrement())
+  email          String        @unique
+  hashedPassword String
+  isActive       Boolean       @default(true)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  name           String?
+  documents      Document[]
+  quizzes        Quiz[]
+  quizAttempts   QuizAttempt[]
+  flashcardAttempts FlashcardAttempt[]
+}
+
+model Document {
+  id        String   @id @default(uuid())
+  ownerId   Int
+  filename  String
+  fullText  String
+  summary   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  owner     User     @relation(fields: [ownerId], references: [id])
+  quizzes   Quiz[]
+  flashcards Flashcard[]
+}
+
+model Quiz {
+  id         String        @id @default(uuid())
+  userId     Int
+  documentId String
+  difficulty String
+  createdAt  DateTime      @default(now())
+  questions  Question[]
+  document   Document      @relation(fields: [documentId], references: [id])
+  user       User          @relation(fields: [userId], references: [id])
+  attempts   QuizAttempt[]
+}
+
+model Question {
+  id            String  @id @default(uuid())
+  quizId        String
+  question      String
+  optionA       String
+  optionB       String
+  optionC       String
+  optionD       String
+  correctAnswer String
+  explanation   String?
+  quiz          Quiz    @relation(fields: [quizId], references: [id], onDelete: Cascade)
+}
+
+model QuizAttempt {
+  id             String   @id @default(uuid())
+  userId         Int
+  quizId         String
+  score          Int
+  totalQuestions Int
+  answers        String
+  completedAt    DateTime @default(now())
+  quiz           Quiz     @relation(fields: [quizId], references: [id])
+  user           User     @relation(fields: [userId], references: [id])
+}
+
+model Flashcard {
+  id        Int      @id @default(autoincrement())
+  question  String
+  answer    String
+  ownerId   Int
+  document  Document @relation(fields: [documentId], references: [id])
+  documentId String
+  attempts FlashcardAttempt[]
+}
+
+model FlashcardAttempt {
+  id           String     @id @default(uuid())
+  userId       Int
+  flashcardId  Int
+  score        Int
+  attemptedAt  DateTime   @default(now())
+  flashcard    Flashcard  @relation(fields: [flashcardId], references: [id])
+  user         User       @relation(fields: [userId], references: [id])
+}

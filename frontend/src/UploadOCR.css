@@ -1,0 +1,238 @@
+/* ✨ [NEW] เพิ่ม @property เพื่อให้อนิเมชัน smooth ใน Chrome */
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.upload-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.upload-card {
+  background-color: white;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.upload-logo {
+  width: 100px;
+  height: 100px;
+}
+
+.upload-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 2rem 0;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.file-upload-area {
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  background-color: #f8fafc;
+  cursor: pointer; /* ทำให้เมาส์เป็นรูปมือ */
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.file-upload-area::before {
+  content: 'Choose a PDF file';
+  color: #475569;
+  font-size: 1.3rem;
+  font-weight: 500;
+  position: absolute;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.file-upload-area:hover {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.file-upload-area:hover::before {
+  color: #3b82f6;
+}
+
+/* --- ✨ [FIX] ปรับปรุงส่วนของ Animation ทั้งหมด --- */
+.file-upload-area.has-file {
+  border-color: transparent;
+  padding: 0; /* เอา padding ออกเพื่อให้ animation ชิดขอบ */
+}
+
+/* ::before คือกรอบด้านในที่แสดงชื่อไฟล์ */
+.file-upload-area.has-file::before {
+  content: attr(data-file-name);
+  color: #1e293b;
+  font-weight: 600;
+  
+  position: absolute;
+  z-index: 2;
+  inset: 3px; /* ความหนาของขอบไฟ */
+  
+  background-color: #f8fafc;
+  border-radius: 10px; /* ขอบมนด้านใน */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem; /* เพิ่ม padding กลับเข้ามาในนี้แทน */
+}
+
+/* ::after คือแสงไฟที่วิ่งอยู่ข้างหลัง */
+.file-upload-area.has-file::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: 12px;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 0%,
+    transparent 50%,
+    #3b82f6 80%,
+    #60a5fa 95%,
+    transparent 100%
+  );
+  animation: border-scanner 4s linear infinite;
+}
+
+@keyframes border-scanner {
+  to {
+    --angle: 360deg;
+  }
+}
+/* --- จบส่วนของ Animation --- */
+
+.submit-button {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.submit-button:not(:disabled):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(59, 130, 246, 0.35);
+}
+
+.submit-button:not(:disabled)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: shimmer 2.5s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -100% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+.result-section {
+  margin-top: 2rem;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.summary-content {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.summary-text {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow: hidden;
+}
+
+.summary-line {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: revealLine 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes revealLine {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

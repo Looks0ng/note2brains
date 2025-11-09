@@ -1,0 +1,210 @@
+/* General form styles (can be shared with Login.css) */
+.form.active {
+    display: block;
+}
+
+.form:not(.active) {
+    display: none;
+}
+
+/* --- ✨ MAIN PAGE LAYOUT --- */
+.register-page {
+    min-height: 100vh;
+    /* ✨ REMOVED: The old background to let the main theme show through */
+    /* background: linear-gradient(135deg, #104880 100%, #1e5a8a 100%); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.register-container {
+    background: white;
+    border-radius: 25px;
+    display: flex;
+    width: 800px;
+    max-width: 95%;
+    overflow: hidden;
+    /* ✨ MODIFIED: A better shadow for dark backgrounds */
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+}
+
+.register-content {
+    flex: 1;
+    padding: 35px;
+}
+
+.register-image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: #f8fafc; /* Adds a light background for the image area */
+}
+
+.register-image img {
+    width: 250px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* --- Form Elements Styling --- */
+h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: #1e293b;
+}
+
+.subtitle {
+    font-size: 16px;
+    margin-bottom: 25px;
+    color: #64748b;
+}
+
+.form-group {
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #334155;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* --- Password Validation & Rules --- */
+.password-status {
+    font-size: 14px;
+    margin: 4px 0 10px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
+}
+
+.password-status.neutral {
+    color: #6b7280;
+    background: #f3f4f6;
+    border: 1px dashed #d1d5db;
+}
+
+.password-status.match {
+    color: #059669;
+    background: #ecfdf5;
+    border: 1px solid #6ee7b7;
+    animation: pulseSuccess 0.5s ease;
+}
+
+.password-status.not-match {
+    color: #dc2626;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    animation: shakeError 0.5s ease;
+}
+
+.password-rules {
+    margin: 8px 0 15px;
+    min-height: 70px;
+}
+
+.rule {
+    color: #dc2626;
+    margin-bottom: 6px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.rule.valid {
+    color: #22c55e;
+}
+
+.rule .rule-icon {
+    font-weight: 900;
+    font-size: 12px;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Continue Button Styling --- */
+.continue-btn {
+    width: 100%;
+    padding: 15px;
+    background: #1e293b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.continue-btn:hover:not(:disabled) {
+    background: #334155;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(30, 41, 59, 0.25);
+}
+
+.continue-btn:disabled {
+    background: #e2e8f0;
+    color: #94a3b8;
+    cursor: not-allowed;
+}
+
+/* --- Login Link --- */
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* --- Animation Keyframes --- */
+@keyframes pulseSuccess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shakeError {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+    20%, 40%, 60%, 80% { transform: translateX(3px); }
+}

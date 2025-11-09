@@ -1,0 +1,292 @@
+/* ==============================================
+   High Contrast Blue & White Theme
+   ============================================== */
+:root {
+  --primary-blue: #2563eb; 
+  --primary-blue-dark: #1e40af; 
+  --primary-blue-light: #eff6ff;
+  --text-on-dark: #e2e8f0; 
+  --text-dark: #1e293b;
+  --text-medium: #475569;
+  --border-light: #e2e8f0;
+  --shimmer-color: rgba(100, 116, 139, 0.1);
+  --shimmer-color-light: rgba(255, 255, 255, 0.2); /* For dark buttons */
+}
+
+.quiz-main {
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.quiz-card-header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 24px;
+}
+
+.quiz-back-btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-on-dark);
+  transition: all 0.3s ease; 
+}
+.quiz-back-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.quiz-question-card {
+  background: var(--primary-blue-dark);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
+  animation: slideIn 0.4s ease-out;
+  border: 1px solid var(--primary-blue-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  color: var(--text-on-dark);
+  width: 100%;
+  max-width: 900px;
+  min-height: 700px;
+}
+
+.quiz-question-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px 32px;
+  width: 100%;
+  max-width: 550px;
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 250px;
+}
+
+.quiz-question {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.6;
+  text-align: center;
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quiz-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 16px 0 0;
+  flex-shrink: 0;
+}
+.quiz-counter {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.current-number {
+  font-size: 24px;
+  color: var(--primary-blue);
+}
+.divider, .total-number {
+  color: var(--text-medium);
+}
+.quiz-nav-btn {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 12px;
+  background-color: #3b82f6;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+.quiz-nav-btn:hover:not(:disabled) {
+  background-color: #60a5fa;
+  transform: scale(1.05);
+}
+
+/* ✨ [EDIT] Changed button color to blue */
+.quiz-submit-btn {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: var(--primary-blue); /* Changed to blue */
+  color: white;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); /* Changed to blue shadow */
+  position: relative; /* Added for animation */
+  overflow: hidden;   /* Added for animation */
+}
+
+/* ✨ [EDIT] Changed hover color to darker blue */
+.quiz-submit-btn:hover:not(:disabled) {
+  background-color: #1d4ed8; /* Darker blue */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); /* Darker blue shadow */
+}
+
+.quiz-submit-btn:disabled,
+.quiz-nav-btn:disabled {
+    background-color: #9ca3af;
+    color: #e5e7eb;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  width: 100%;
+  max-width: 800px;
+}
+.quiz-option-label {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px 24px 24px 24px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  border: 2px solid var(--border-light);
+  color: var(--text-dark);
+  position: relative;
+  text-align: center;
+  display: block;
+  overflow: hidden;
+}
+.quiz-option-label:hover {
+  border-color: var(--primary-blue);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+.quiz-option-label.selected {
+  border-color: var(--primary-blue);
+  background: var(--primary-blue-light);
+}
+.quiz-option-label input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+.option-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-medium);
+  transition: all 0.2s ease-in-out;
+  border: 1px solid #e2e8f0;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+.quiz-option-label.selected .option-number {
+  background-color: var(--primary-blue);
+  color: white;
+  border-color: var(--primary-blue);
+}
+.option-text {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.quiz-option-label.selected .option-text {
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+@keyframes shine-effect {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.quiz-option-label.selected::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    var(--shimmer-color), 
+    transparent
+  );
+  animation: shine-effect 1.5s linear infinite;
+}
+
+/* ✨ [ADD] Shimmer effect for the submit button */
+.quiz-submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px; /* Width of the shine */
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    var(--shimmer-color-light), 
+    transparent
+  );
+  animation: shine-effect 1.5s linear infinite;
+}
+
+
+.option-text, .option-number {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .quiz-options {
+    grid-template-columns: 1fr;
+  }
+}
