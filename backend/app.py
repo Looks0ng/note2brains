@@ -4,14 +4,22 @@ from fastapi.middleware.cors import CORSMiddleware
 import requests
 import json
 from PyPDF2 import PdfReader
+from contextlib import asynccontextmanager
 import io
-from db import get_prisma
+from db import get_prisma, prisma
 from quiz import router as quiz_router
 from flashCard import router as flashcard_router
 from main import router as main_router
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print("Connecting to Database...")
+    await prisma.connect() # <--- หัวใจสำคัญอยู่ตรงนี้
+    yield
+    print("Disconnecting from Database...")
+    await prisma.disconnect()
 
+app = FastAPI(lifespan=lifespan)
 # ✅ รวม router จากโมดูลอื่น
 app.include_router(main_router)
 app.include_router(quiz_router)
