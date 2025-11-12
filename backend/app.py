@@ -17,14 +17,17 @@ app = FastAPI()
 app.include_router(main_router)
 app.include_router(quiz_router)
 app.include_router(flashcard_router)
+origins = [
+    "https://note2brains.vercel.app",  # frontend ของคุณ
+    "http://localhost:3000",           # สำหรับทดสอบ local
+]
 
-# ✅ ตั้งค่า CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,        # อนุญาตเฉพาะ origin ที่ระบุ
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],          # อนุญาตทุก HTTP method (GET, POST, PUT, DELETE)
+    allow_headers=["*"],          # อนุญาตทุก header
 )
 
 TYPHOON_API_KEY = "sk-CZSRGqZVrGBdNuGgNGUXVs1R4HWjBlBSi65nIW4oTmy4Z8EC"
