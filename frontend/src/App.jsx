@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Navigate, Outlet, useLocation } from 'react-router-dom';
-import api from './api';
+
 // Import Components
 import Navbar from './Navbar';
 import Login from './Login';
