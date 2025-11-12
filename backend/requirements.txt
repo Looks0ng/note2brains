@@ -5,4 +5,4 @@ requests
 openai
 bcrypt
 PyPDF2
-prisma>=0.17.0
+prisma
