@@ -19,7 +19,8 @@ app.include_router(quiz_router)
 app.include_router(flashcard_router)
 origins = [
     "https://note2brains-1.onrender.com",  # frontend ของคุณ
-    "http://localhost:3000",           # สำหรับทดสอบ local
+    "http://localhost:3000",
+    "https://note2brains.onrender.com"
 ]
 
 app.add_middleware(
