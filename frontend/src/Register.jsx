@@ -40,7 +40,7 @@ export default function Register() {
     }
 
     try {
-      const res = await fetch("https://note2brains.onrender.com/register", {
+      const res = await fetch(`${API_BASE_URL}/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
