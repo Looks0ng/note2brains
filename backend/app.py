@@ -12,7 +12,15 @@ from flashCard import router as flashcard_router
 from main import router as main_router
 
 app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await prisma.connect()
+    print("✅ Database connected")
+    yield
+    await prisma.disconnect()
+    print("❌ Database disconnected")
 
+app = FastAPI(lifespan=lifespan)
 # ✅ รวม router จากโมดูลอื่น
 app.include_router(main_router)
 app.include_router(quiz_router)
