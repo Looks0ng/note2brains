@@ -3,7 +3,8 @@ import "./Register.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
-  const API_BASE_URL = "https://note2brains.onrender.com";
+  const API_BASE_URL = process.env.REACT_APP_API_URL || "https://note2brains.onrender.com";
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
