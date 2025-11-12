@@ -12,7 +12,9 @@ from flashCard import router as flashcard_router
 from main import router as main_router
 
 app = FastAPI()
-
+origins = [
+    "https://note2brains.vercel.app"
+]
 # ✅ รวม router จากโมดูลอื่น
 app.include_router(main_router)
 app.include_router(quiz_router)
@@ -21,7 +23,7 @@ app.include_router(flashcard_router)
 # ✅ ตั้งค่า CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
