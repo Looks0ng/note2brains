@@ -11,19 +11,8 @@ from quiz import router as quiz_router
 from flashCard import router as flashcard_router
 from main import router as main_router
 
+app = FastAPI()
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # Startup - connect to database
-    await prisma.connect()
-    print("✅ Connected to database")
-    yield
-    # Shutdown - disconnect from database
-    await prisma.disconnect()
-    print("❌ Disconnected from database")
-
-# ✅ ใช้ lifespan ใน FastAPI
-app = FastAPI(lifespan=lifespan)
 # ✅ รวม router จากโมดูลอื่น
 app.include_router(main_router)
 app.include_router(quiz_router)
@@ -32,7 +21,7 @@ app.include_router(flashcard_router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins="https://react-frontend-d6pg.onrender.com",        # อนุญาตเฉพาะ origin ที่ระบุ
+    allow_origins="*",        # อนุญาตเฉพาะ origin ที่ระบุ
     allow_credentials=True,
     allow_methods=["*"],          # อนุญาตทุก HTTP method (GET, POST, PUT, DELETE)
     allow_headers=["*"],          # อนุญาตทุก header
