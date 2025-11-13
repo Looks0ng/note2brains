@@ -3,8 +3,6 @@ import "./Register.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
-  const API_BASE_URL = process.env.REACT_APP_API_URL || "https://note2brains.onrender.com";
-  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -41,7 +39,7 @@ export default function Register() {
     }
 
     try {
-      const res = await fetch(`${API_BASE_URL}/register`, {
+      const res = await fetch("http://localhost:8000/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: fastapi-backend
+    env: python
+    rootDir: backend
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+      prisma generate
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: my-postgres-db
+          property: connectionString
+    plan: free  # เปลี่ยนได้เป็น starter, standard ถ้าต้องการ performance เพิ่ม
+
+  - type: web
+    name: react-frontend
+    env: node
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
+
+databases:
+  - name: my-postgres-db
+    plan: free
