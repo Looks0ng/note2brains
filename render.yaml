@@ -24,7 +24,7 @@ services:
     routes:
       - type: rewrite
         source: /api/*
-        destination: https://fastapi-backend.onrender.com/api/*
+        destination: https://fastapi-backend-irwb.onrender.com/api/*
 
 databases:
   - name: my-postgres-db
