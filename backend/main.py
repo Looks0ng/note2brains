@@ -16,7 +16,7 @@ class LoginRequest(BaseModel):
     email: str
     password: str
 
-@router.post("/register")
+@router.post("/api/register")
 async def register(data: RegisterRequest):
     if data.password != data.confirm_password:
         raise HTTPException(status_code=400, detail="Passwords do not match")

@@ -1,7 +1,7 @@
 services:
   - type: web
     name: fastapi-backend
-    env: python
+    runtime: python
     rootDir: backend
     buildCommand: |
       pip install --upgrade pip
@@ -11,6 +11,8 @@ services:
       python -m prisma db push
     startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
     envVars:
+      - key: python
+        value: python3.10
       - key: DATABASE_URL
         fromDatabase:
           name: my-postgres-db
