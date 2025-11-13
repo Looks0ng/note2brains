@@ -5,7 +5,7 @@ import bcrypt
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import APIRouter
 
-router = APIRouter()
+router = APIRouter(prefix="/api")
 
 class RegisterRequest(BaseModel):
     email: str
