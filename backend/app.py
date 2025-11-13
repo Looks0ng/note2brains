@@ -17,15 +17,11 @@ app = FastAPI()
 app.include_router(main_router)
 app.include_router(quiz_router)
 app.include_router(flashcard_router)
-origins = [
-    "https://note2brains-1.onrender.com",  # frontend ของคุณ
-    "http://localhost:3000",
-    "https://note2brains.onrender.com"
-]
+
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,        # อนุญาตเฉพาะ origin ที่ระบุ
+    allow_origins="https://react-frontend-d6pg.onrender.com",        # อนุญาตเฉพาะ origin ที่ระบุ
     allow_credentials=True,
     allow_methods=["*"],          # อนุญาตทุก HTTP method (GET, POST, PUT, DELETE)
     allow_headers=["*"],          # อนุญาตทุก header
