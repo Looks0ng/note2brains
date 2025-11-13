@@ -6,9 +6,9 @@ services:
     buildCommand: |
       pip install --upgrade pip
       pip install -r requirements.txt
-      python -m prisma generate
-      python -m prisma db push
-      python -m prisma py fetch
+      prisma generate
+      prisma db push
+      prisma py fetch
     startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: python
