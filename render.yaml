@@ -9,7 +9,8 @@ services:
       prisma generate
       prisma db push
       prisma py fetch
-    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    startCommand: prisma py fetch 
+                  uvicorn app:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: python
         value: python3.10
