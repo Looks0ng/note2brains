@@ -13,11 +13,10 @@ services:
         fromDatabase:
           name: my-postgres-db
           property: connectionString
-    plan: free  # เปลี่ยนได้เป็น starter, standard ถ้าต้องการ performance เพิ่ม
+    plan: free
 
-  - type: web
+  - type: static
     name: react-frontend
-    env: node
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: build
