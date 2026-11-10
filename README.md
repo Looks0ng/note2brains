@@ -14,11 +14,9 @@ The frontend demo is separate from the Python backend. Document processing and l
 - Submit quiz answers and review results and learning history.
 - Register and sign in to access user-associated learning data.
 
-## My contribution
+## Team project
 
-**Siridech Burakorn — Frontend Developer**
-
-I contributed to the React frontend and its integration with backend APIs for document processing and interactive learning workflows. The OCR, language-model services, database, and backend are parts of the shared team implementation; they are listed below to explain the complete application architecture.
+NOTE2BRAINS is a collaborative project combining frontend development, backend services, document processing, and AI integrations. This README describes the application and the team's shared implementation.
 
 ## Technology stack
 
@@ -111,6 +109,3 @@ The frontend normally starts at `http://localhost:3000`.
 - `frontend/src/api.js` imports Axios, but Axios is not currently listed in `frontend/package.json`. If that module is used, add the dependency or align the module with the Fetch API used elsewhere.
 - A hosted frontend does not imply that the backend or external AI services are available.
 
-## Team project
-
-This repository contains a collaborative implementation. My portfolio contribution is frontend development and backend API integration.
